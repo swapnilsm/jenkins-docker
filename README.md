@@ -1,5 +1,5 @@
 # jenkins-docker
 
-[![Build Status](http://jenkins.ecs.devfactory.com/job/jenkins-docker/job/master/10/badge/icon)](http://jenkins.ecs.devfactory.com/job/jenkins-docker/job/master/10/)
+http://jenkins.ecs.devfactory.com/job/jenkins-docker/master/10//badge/icon
 
 Customised docker based Jenkins
