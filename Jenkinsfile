@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh 'python --version'
+        sh 'docker build -t registry2.swarm.devfactory.com/codenation/jenkins:latest'
       }
     }
   }
