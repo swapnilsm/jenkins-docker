@@ -1,10 +1,13 @@
 pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'python --version'
-            }
-        }
+  agent none
+  stages {
+    stage('Test') {
+      steps {
+        sh 'python --version'
+      }
     }
+  }
+  environment {
+    DOCKER_HOST = 'tcp://build.swarm.devfactory.com:2375'
+  }
 }
