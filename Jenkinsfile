@@ -1,14 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('Pull') {
+    stage('Print Pulling :D ') {
       steps {
-        sh 'docker pull registry2.swarm.devfactory.com/codenation/jenkins:latest'
+        echo 'Pulling old image'
       }
     }
-    stage('Build') {
+    stage('Pull & Build') {
       steps {
-        sh 'docker build -t registry2.swarm.devfactory.com/codenation/jenkins:latest .'
+        sh '''docker pull registry2.swarm.devfactory.com/codenation/jenkins:latest
+docker build -t registry2.swarm.devfactory.com/codenation/jenkins:latest .'''
       }
     }
     stage('Push') {
