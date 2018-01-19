@@ -15,6 +15,7 @@ pipeline {
     stage('Test') {
       steps {
         container('sandi-metz-enforcer') {
+          sh 'pwd'
           sh 'ls'
         }
       }
