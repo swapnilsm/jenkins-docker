@@ -2,7 +2,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'sandi-metz-enforcer'
+      label 'slave-pod'
       containerTemplate {
         name 'sandi-metz-enforcer'
         image 'registry2.swarm.devfactory.com/codenation/sandimetz-enforcer:v1.0.0'
