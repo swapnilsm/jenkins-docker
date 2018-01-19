@@ -1,3 +1,7 @@
-kubernetes.pod('alpha-v5').withImage('ubuntu').inside {
-    sh 'echo "asdfasdfasdf"'
+podTemplate(label: 'mypod') {
+    node('mypod') {
+        stage('Run shell') {
+            sh 'echo hello world'
+        }
+    }
 }
