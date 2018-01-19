@@ -2,20 +2,18 @@
 pipeline {
   agent {
     kubernetes {
-      label 'mypod'
+      label 'sandi-metz-enforcer'
       containerTemplate {
-        name 'ubuntu'
-        image 'ubuntu'
-        ttyEnabled true
-        command 'cat'
+        name 'sandi-metz-enforcer'
+        image 'registry2.swarm.devfactory.com/codenation/sandimetz-enforcer:v1.0.0'
       }
     }
   }
   stages {
-    stage('Show version') {
+    stage('') {
       steps {
-        container('ubuntu') {
-          sh 'cat /etc/issue'
+        container('sandi-metz-enforcer') {
+          sh '/bin/bash -c ./sandimetz.enforcer.sh'
         }
       }
     }
