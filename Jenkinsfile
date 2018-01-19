@@ -1,10 +1,3 @@
-pipeline {
-  agent any
-  stages {
-    stage('Dummy') {
-      steps {
-        echo 'Step done...'
-      }
-    }
-  }
+kubernetes.pod('alpha-v5').withImage('ubuntu').inside {
+    sh 'echo "asdfasdfasdf"'
 }
