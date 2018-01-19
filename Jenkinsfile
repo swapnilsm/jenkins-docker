@@ -7,7 +7,4 @@ pipeline {
       }
     }
   }
-  environment {
-    DOCKER_HOST = 'tcp://build.swarm.devfactory.com:2375'
-  }
 }
