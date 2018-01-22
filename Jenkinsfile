@@ -6,7 +6,8 @@ podTemplate(label: 'sandi', containers: [
     stage('Build a Maven project') {
       echo "Something"
       container('sandi') {
-        def gitUrl = sh(returnStdout: true, script: "ls /").trim()
+        checkout scm
+        def gitUrl = sh(returnStdout: true, script: "ls").trim()
         println gitUrl
         sh 'cat /etc/issue'
       }
