@@ -16,10 +16,10 @@ pipeline {
       steps {
         container('sandi-metz-enforcer') {
           sh 'echo $ABCD;'
-          shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-          gitUrl = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
-          println shortCommit
-          println gitUrl
+          // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+          // gitUrl = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
+          // println shortCommit
+          // println gitUrl
           // sh 'bash sandimetz.enforcer.sh;'
         }
       }
