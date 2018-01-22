@@ -9,14 +9,14 @@ pipeline {
         ttyEnabled true 
         command 'cat'
       }
-      def shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-      println shortCommit
     }
   }
   stages {
     stage('Test') {
        steps {
         container('sandi-metz-enforcer') {
+          sh 'echo $BRANCH_NAME'
+          sh 'echo $GIT_URL'
           sh 'git rev-parse --abbrev-ref HEAD'
           sh 'export GIT_URL=$(git config --get remote.origin.url)'
           sh 'echo $GIT_URL;'
