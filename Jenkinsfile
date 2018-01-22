@@ -1,27 +1,15 @@
-podTemplate(label: 'maven-golang', containers: [
-  containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
-  containerTemplate(name: 'golang', image: 'golang:1.8.0', ttyEnabled: true, command: 'cat')
+podTemplate(label: 'sandi-metz-enforcer', containers: [
+  containerTemplate(name: 'sandi-metz-enforcer', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat')
   ]) {
 
-  node('maven-golang') {
-    stage('Build a Maven project') {
-      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
-      container('maven') {
-        sh 'mvn -B clean package'
+  node('sandi-metz-enforcer') {
+    shortCommit = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
+    println shortCommit
+    stage('Test') {
+      container('sandi-metz-enforcer') {
+        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
       }
     }
-
-    stage('Build a Golang project') {
-      git url: 'https://github.com/terraform-providers/terraform-provider-aws.git'
-      container('golang') {
-        sh """
-        mkdir -p /go/src/github.com/terraform-providers
-        ln -s `pwd` /go/src/github.com/terraform-providers/terraform-provider-aws
-        cd /go/src/github.com/terraform-providers/terraform-provider-aws && make build
-        """
-      }
-    }
-
   }
 }
 /*pipeline {
