@@ -13,8 +13,8 @@ pipeline {
   }
   stages {
     stage('Test') {
-      steps {
-        container('sandi-metz-enforcer') {
+      container('sandi-metz-enforcer') {
+        steps {
           sh 'echo $ABCD;'
           def shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
           def gitUrl = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
