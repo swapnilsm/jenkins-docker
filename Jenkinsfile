@@ -5,7 +5,7 @@ pipeline {
       label 'slave-pod'
       containerTemplate {
         name 'sandi-metz-enforcer'
-        image 'registry2.swarm.devfactory.com/codenation/sandimetz-enforcer:v1.0.0'
+        image 'registry2.swarm.devfactory.com/codenation/sandimetz-enforcer:v1.0.1'
         ttyEnabled true 
         command 'cat'
       }
@@ -15,7 +15,7 @@ pipeline {
     stage('Test') {
       steps {
         container('sandi-metz-enforcer') {
-          sh "cd /; /bin/bash -c /sandimetz.enforcer.sh;"
+          sh "bash /sandimetz.enforcer.sh;"
         }
       }
     }
