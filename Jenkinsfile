@@ -1,4 +1,3 @@
-
 pipeline {
   agent {
     kubernetes {
@@ -13,15 +12,14 @@ pipeline {
   }
   stages {
     stage('Test') {
-       steps {
-        container('sandi-metz-enforcer') {
-          echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-          echo "${env.BRANCH_NAME}"
-          sh 'echo ${env.GIT_URL}'
-          sh 'git rev-parse --abbrev-ref HEAD'
-          sh 'export GIT_URL=$(git config --get remote.origin.url)'
-          sh 'echo $GIT_URL;'
-          // sh 'bash sandimetz.enforcer.sh;'
+      steps {
+        node('slave-pod') {
+          shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+          println shortCommit
+          container('sandi-metz-enforcer') {
+            echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+            // sh 'bash sandimetz.enforcer.sh;'
+          }
         }
       }
     }
