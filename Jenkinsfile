@@ -6,7 +6,7 @@ podTemplate(label: 'maven', containers: [
     stage('Build a Maven project') {
       echo "Something"
       container('maven') {
-        def gitUrl = sh "git config --get remote.origin.url"
+        def gitUrl = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
         println gitUrl
         sh 'cat /etc/issue'
       }
