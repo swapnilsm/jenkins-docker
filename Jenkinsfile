@@ -16,7 +16,7 @@ pipeline {
        steps {
         container('sandi-metz-enforcer') {
           sh 'echo $ABCD;'
-          sh "git log -n 1 --pretty=format:'%h'"
+          sh "git branch | grep \* | cut -d ' ' -f2-"
           sh "git config --get remote.origin.url"
           // sh 'bash sandimetz.enforcer.sh;'
         }
