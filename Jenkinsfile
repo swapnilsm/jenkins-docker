@@ -8,9 +8,6 @@ pipeline {
         image 'registry2.swarm.devfactory.com/codenation/sandimetz-enforcer:v1.0.2'
         ttyEnabled true 
         command 'cat'
-        envvars [
-            envVar(key: 'ABCD', value: 'pqrs')
-        ]
       }
     }
   }
