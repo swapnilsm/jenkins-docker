@@ -15,7 +15,8 @@ pipeline {
     stage('Test') {
        steps {
         container('sandi-metz-enforcer') {
-          sh 'echo ${env.BRANCH_NAME}'
+          echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+          echo "${env.BRANCH_NAME}"
           sh 'echo ${env.GIT_URL}'
           sh 'git rev-parse --abbrev-ref HEAD'
           sh 'export GIT_URL=$(git config --get remote.origin.url)'
