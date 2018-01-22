@@ -11,9 +11,9 @@ pipeline {
     }
   }
   stages {
-    stage('Test') {
-      steps {
-        node('slave-pod') {
+    node('slave-pod') {
+      stage('Test') {
+        steps {
           shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
           println shortCommit
           container('sandi-metz-enforcer') {
