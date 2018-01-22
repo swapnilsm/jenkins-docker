@@ -4,12 +4,11 @@ podTemplate(label: 'sandi-pod', containers: [
 
   node('sandi-pod') {
     stage('Checks') {
-      echo "Something"
       container('sandi-container') {
         checkout scm
         def gitUrl = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
-        println gitUrl
-        sh 'cat /etc/issue'
+        def gitBranch = sh(returnStdout: true, script: "git branch | grep \* | cut -d ' ' -f2-").trim()
+        sh "echo ${gitUrl} and branch: ${gitBranch}"
       }
     }
   }
