@@ -15,7 +15,7 @@ pipeline {
     stage('Test') {
        steps {
         container('sandi-metz-enforcer') {
-          sh "git branch | grep \* | cut -d ' ' -f2-"
+          // sh "git branch | grep \* | cut -d ' ' -f2-"
           sh "git config --get remote.origin.url"
           // sh 'bash sandimetz.enforcer.sh;'
         }
