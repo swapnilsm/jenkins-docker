@@ -5,6 +5,7 @@ podTemplate(label: 'maven', containers: [
   node('maven') {
     stage('Build a Maven project') {
       def a = 10
+      println a
       echo "Something"
       container('maven') {
           sh 'cat /etc/issue'
