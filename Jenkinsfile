@@ -8,6 +8,9 @@ pipeline {
         image 'registry2.swarm.devfactory.com/codenation/sandimetz-enforcer:v1.0.2'
         ttyEnabled true 
         command 'cat'
+        envvars [
+            envVar(key: 'ABCD', value: 'pqrs')
+        ]
       }
     }
   }
@@ -15,7 +18,12 @@ pipeline {
     stage('Test') {
       steps {
         container('sandi-metz-enforcer') {
-          sh "bash sandimetz.enforcer.sh;"
+          sh 'echo $ABCD;'
+          shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+          gitUrl = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
+          println shortCommit
+          println gitUrl
+          // sh 'bash sandimetz.enforcer.sh;'
         }
       }
     }
