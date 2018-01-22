@@ -4,11 +4,11 @@ podTemplate(label: 'maven', containers: [
 
   node('maven') {
     stage('Build a Maven project') {
-      def gitUrl = sh "git config --get remote.origin.url"
-      println gitUrl
       echo "Something"
       container('maven') {
-          sh 'cat /etc/issue'
+        def gitUrl = sh "git config --get remote.origin.url"
+        println gitUrl
+        sh 'cat /etc/issue'
       }
     }
   }
