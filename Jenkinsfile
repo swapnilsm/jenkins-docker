@@ -7,7 +7,7 @@ podTemplate(label: 'sandi-pod', containers: [
       container('sandi-container') {
         checkout scm
         def gitUrl = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
-        // def gitBranch = sh(returnStdout: true, script: "git branch | grep \* | cut -d ' ' -f2-").trim()
+        def gitBranch = sh(returnStdout: true, script: "git branch").trim()
         sh "echo ${gitUrl}"
       }
     }
