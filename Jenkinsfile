@@ -5,9 +5,9 @@ podTemplate(label: 'maven', containers: [
   node('maven') {
     stage('Build a Maven project') {
       def a = 10
-      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
+      echo "Something"
       container('maven') {
-          sh 'mvn -B clean package'
+          sh 'cat /etc/issue'
       }
     }
   }
