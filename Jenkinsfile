@@ -13,8 +13,8 @@ pipeline {
   }
   stages {
     stage('Test') {
-      container('sandi-metz-enforcer') {
-        steps {
+       steps {
+        container('sandi-metz-enforcer') {
           sh 'echo $ABCD;'
           sh "git log -n 1 --pretty=format:'%h'"
           sh "git config --get remote.origin.url"
