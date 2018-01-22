@@ -12,10 +12,10 @@ pipeline {
   }
   stages {
     node('slave-pod') {
+      shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+      println shortCommit
       stage('Test') {
-        steps {
-          shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-          println shortCommit
+        steps {    
           container('sandi-metz-enforcer') {
             echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             // sh 'bash sandimetz.enforcer.sh;'
