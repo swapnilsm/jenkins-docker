@@ -1,12 +1,16 @@
-podTemplate(label: 'sandi-metz-enforcer', containers: [
-  containerTemplate(name: 'sandi-metz-enforcer', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat')
+podTemplate(label: 'sandi-metz-enforcer-pod', containers: [
+  containerTemplate(
+    name: 'sandi-metz-enforcer-container', 
+    image: 'registry2.swarm.devfactory.com/codenation/sandimetz-enforcer:v1.0.2', 
+    ttyEnabled: true, 
+    command: 'cat')
   ]) {
 
-  node('sandi-metz-enforcer') {
+  node('sandi-metz-enforcer-pod') {
     shortCommit = sh(returnStdout: true, script: "git config --get remote.origin.url").trim()
     println shortCommit
     stage('Test') {
-      container('sandi-metz-enforcer') {
+      container('sandi-metz-enforcer-container') {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
       }
     }
