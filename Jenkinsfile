@@ -15,8 +15,8 @@ pipeline {
     stage('Test') {
        steps {
         container('sandi-metz-enforcer') {
-          sh 'echo $BRANCH_NAME'
-          sh 'echo $GIT_URL'
+          sh 'echo ${env.BRANCH_NAME}'
+          sh 'echo ${env.GIT_URL}'
           sh 'git rev-parse --abbrev-ref HEAD'
           sh 'export GIT_URL=$(git config --get remote.origin.url)'
           sh 'echo $GIT_URL;'
